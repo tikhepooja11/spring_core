@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns:context="http://www.springframework.org/schema/context"
+     xmlns:p="http://www.springframework.org/schema/p"
+     xmlns:c="http://www.springframework.org/schema/c"
+     xmlns:util="http://www.springframework.org/schema/util"
+     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+     <bean class="com.springcore.autowiring.byxml.Address" name="address1"
+          p:street="Mohite Heights Punawale" p:city="Pune">
+     </bean>
+
+     <bean class="com.springcore.autowiring.byxml.Employee" name="emp1"
+          autowire="byName">
+     </bean>
+
+     <!-- Make sure there will be single bean of type Address class else will throw an exception. -->
+     <bean class="com.springcore.autowiring.byxml.Employee" name="emp1"
+          autowire="byType">
+     </bean>
+
+     <!-- In this case if there are 2 address beans with 2 diff names address and address1 then bean
+     with same as constructor name i.e address will be called instead of address1. -->
+     <bean class="com.springcore.autowiring.byxml.Employee" name="emp1"
+          autowire="constructor">
+     </bean>
+</beans>

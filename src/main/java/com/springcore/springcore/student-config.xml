@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:c="http://www.springframework.org/schema/c"
+        xmlns:util="http://www.springframework.org/schema/util"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                            http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+        <bean class="com.springcore.springcore.Student" name="student1"
+        >
+                <property name="studentId">
+                        <value>1</value>
+                </property>
+                <property name="studentName">
+                        <value>Pooja Tikhe</value>
+                </property>
+                <property name="studentAddress">
+                        <value>Mohite Heights Punawale, Pune</value>
+                </property>
+        </bean>
+
+        <bean class="com.springcore.springcore.Student" name="student2">
+                <property name="studentId" value="2"></property>
+                <property name="studentName" value="Aarti Tikhe"></property>
+                <property name="studentAddress" value="Gahunje, Pune"></property>
+        </bean>
+
+        <bean class="com.springcore.springcore.Student" name="student3" p:studentId="3"
+                p:studentName="Sushant Tikhe" p:studentAddress="Gahunje, Pune">
+        </bean>
+
+        <bean class="com.springcore.springcore.FamilyDetails" name="poojaFamilyDetails"
+                p:noOfMembers="4" p:motherName="Reshma Tikhe" p:fatherName="Dhruvbal Tikhe">
+        </bean>
+
+        <bean class="com.springcore.springcore.Student" name="student4">
+                <property name="studentId">
+                        <value>4</value>
+                </property>
+                <property name="studentName">
+                        <value>Pooja Bhosale</value>
+                </property>
+                <property name="marks">
+                        <list>
+                                <value>20</value>
+                                <value>30</value>
+                                <value>40</value>
+                                <value>50</value>
+                        </list>
+                </property>
+                <property name="subjects">
+                        <set>
+                                <value>Maths</value>
+                                <value>English</value>
+                                <value>Hindi</value>
+                                <value>Science</value>
+                        </set>
+                </property>
+                <property name="examScore">
+                        <map>
+                                <entry key="Maths" value="20"></entry>
+                                <entry key="English" value="30"></entry>
+                                <entry key="Hindi" value="40"></entry>
+                                <entry key="Science" value="50"></entry>
+                        </map>
+                </property>
+
+                <property name="coursesDuration">
+                        <props>
+                                <prop key="Maths">5 hrs</prop>
+                                <prop key="English">2 hrs</prop>
+                                <prop key="Hindi">4 hrs</prop>
+                                <prop key="Science">9 hrs</prop>
+                        </props>
+                </property>
+
+                <property name="familyDetails" ref="poojaFamilyDetails"></property>
+                <!-- p:familyDetails-ref="familyDetails" or with property injection with p schema in
+                bean tag-->
+
+        </bean>
+
+        <bean class="com.springcore.springcore.FamilyDetails" name="atulFamilyDetails"
+                c:noOfMembers="2" c:motherName="Shobha Bhosale" c:fatherName="Rajaram Bhosale">
+        </bean>
+
+        <util:list list-class="java.util.LinkedList" id="markList">
+                <value>20</value>
+                <value>30</value>
+                <value>40</value>
+                <value>50</value>
+        </util:list>
+
+        <util:set set-class="java.util.HashSet" id="subjects">
+                <value>Maths</value>
+                <value>English</value>
+                <value>Hindi</value>
+                <value>Science</value>
+        </util:set>
+
+        <util:map map-class="java.util.HashMap" id="examScore">
+                <entry key="Maths" value="20"></entry>
+                <entry key="English" value="30"></entry>
+                <entry key="Hindi" value="40"></entry>
+                <entry key="Science" value="50"></entry>
+        </util:map>
+
+        <util:properties id="coursesDuration">
+                <prop key="Maths">2 hrs</prop>
+                <prop key="English">3 hrs</prop>
+                <prop key="Science">4 hrs</prop>
+                <prop key="Hindi">5 hrs</prop>
+        </util:properties>
+
+        <bean class="com.springcore.springcore.Student" name="student5" c:studentId="5"
+                c:studentName="Atul Bhosale" c:studentAddress="Punawale Pune"
+                c:marks-ref="markList" c:subjects-ref="subjects" c:examScore-ref="examScore"
+                c:coursesDuration-ref="coursesDuration"
+                c:familyDetails-ref="atulFamilyDetails"
+        >
+                <!-- <property name="marks" ref="markList"></property>-->
+        </bean>
+        <!-- <bean class="com.springcore.springcore.Student" name="student5">
+                <constructor-arg value="5" type="int"></constructor-arg>
+                <constructor-arg value="Atul Bhosale"></constructor-arg>
+                <constructor-arg value="Punawale Pune"></constructor-arg>
+                <constructor-arg>
+                        <list>
+                                <value>20</value>
+                                <value>30</value>
+                                <value>40</value>
+                                <value>50</value>
+                        </list>
+                </constructor-arg>
+                <constructor-arg>
+                        <set>
+                                <value>Maths</value>
+                                <value>English</value>
+                                <value>Hindi</value>
+                                <value>Science</value>
+                        </set>
+                </constructor-arg>
+                <constructor-arg>
+                        <map>
+                                <entry key="Maths" value="20"></entry>
+                                <entry key="English" value="30"></entry>
+                                <entry key="Hindi" value="40"></entry>
+                                <entry key="Science" value="50"></entry>
+                        </map>
+                </constructor-arg>
+                <constructor-arg ref="atulFamilyDetails"></constructor-arg>
+        </bean> -->
+</beans>
